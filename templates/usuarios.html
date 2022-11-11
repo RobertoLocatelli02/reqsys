@@ -1,0 +1,145 @@
+
+    {% include "header.html" %}
+    <main id="main-listas-usuario">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="d-flex justify-content-between align-items-center mb-3 border-bottom">
+                    <span>Cadastrar Usuarios</span>
+                </h4>
+                <form id="cadastrar-usuario-form" method="POST" action="/cadastroUsuario">
+                <div class="row mb-3">  
+                    <div class="col-md">
+                        <label for="txtCadastrarNome">Nome</label>
+                        <input type="text" class="form-control" name="txtCadastrarNome" id="txtCadastrarNome" autocomplete="off" >
+                    </div>
+                    <div class="col-md">
+                        <label for="txtCadastrarEmail">E-mail</label>
+                        <input type="text" class="form-control" name="txtCadastrarEmail" id="txtCadastrarEmail" autocomplete="off" >
+                    </div>   
+                    <div class="col-md">
+                        <label for="txtCadastrarContato">Telefone para contato</label>
+                        <input type="text" class="form-control" name="txtCadastrarContato" id="txtCadastrarContato" autocomplete="off" >
+                    </div>   
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md">
+                        <label for="txtCadastrarProfissao">Profissão</label>
+                        <input type="text" class="form-control" name="txtCadastrarProfissao" id="txtCadastrarProfissao" autocomplete="off" >
+                    </div>   
+                    <div class="col-md">
+                        <label for="txtCadastrarArea">Área de atuação</label>
+                        <input type="text" class="form-control" name="txtCadastrarArea" id="txtCadastrarArea" autocomplete="off" >
+                    </div>   
+                </div>
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-success btn-block">Cadastrar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="card mt-2">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md">
+                        <table class="table table-striped table-hover table-sm table-bordered table-light" id="tblUsuarios">
+                            <thead>
+                                <tr>
+                                    <th>Nome</th>
+                                    <th>E-mail</th>
+                                    <th>Contato</th>
+                                    <th>Profissão</th>
+                                    <th>Area de atuação</th>
+                                    <th class="text-center">Ações</th>
+                                </tr>
+                            </thead>
+                                {% for usuario in usuarios %}
+                                    <tr>
+                                        <td>{{ usuario['nome'] }}</td>
+                                        <td>{{ usuario['email'] }}</td>
+                                        <td>{{ usuario['contato'] }}</td>
+                                        <td>{{ usuario['profissao'] }}</td>
+                                        <td>{{ usuario['area'] }}</td>
+                                        <td>
+                                            <div class="btn-group">
+                                                <button type="button" class="btn btn-sm btn-primary editUsuario" data-id="{{ usuario['id'] }}"><i class="fas fa-edit"></i> Editar</button>
+                                                <button type="button" class="btn btn-sm btn-danger deleteUsuario" data-id="{{ usuario['id'] }}"><i class="fas fa-trash"></i> Deletar</button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            <tbody>
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal deletar -->
+        <div class="modal fade" id="deletar-usuario-modal" tabindex="-1" role="dialog" aria-labelledby="deletar-usuario-modal-label" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <form role="form" id="deletar-usuario-form" method="POST" action="/deletarUsuario">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Deletar</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true"></span>
+                            </button>
+                            <input type="hidden" name="txtDeleteusuarioID" id="txtDeleteusuarioID" value="">
+                        </div>
+                        <div class="modal-body">
+                            <div class="text-center text-danger">
+                                <i class="far fa-question-circle fa-4x mb-3"></i>
+                            </div>
+                            Tem certeza que quer deletar esse usuario?
+                        </div>
+                        <div class="modal-footer">
+                            <div class="btn-group">
+                                <button type="submit" class="btn btn-success">Confirmar</button>
+                            </div>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- Modal editar  -->
+        <div class="modal fade" id="editar-usuario-modal" tabindex="-1" role="dialog" aria-labelledby="editar-usuario-modal-label" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <form role="form" id="editar-usuario-form" method="POST" action="editarUsuario">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Editar</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true"></span>
+                            </button>
+                            <input type="hidden" name="txtEditusuarioID" id="txtEditusuarioID" value="">
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="txtEditusuarioAtivo">Ativo</label>
+                                <select name="txtEditusuarioAtivo" id="txtEditusuarioAtivo" class="form-select" required>
+                                    <option value="">Escolha uma opção</option>
+                                    <option value="1">Sim</option>
+                                    <option value="0">Não</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <div class="btn-group">
+                                <button type="submit" class="btn btn-success">Confirmar</button>
+                            </div>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    {% include "footer.html" %}
+

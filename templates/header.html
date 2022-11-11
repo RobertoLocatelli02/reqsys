@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static',filename='vendor/bootstrap-5.2.2-dist/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='vendor/fontawesome-free-6.2.0-web/css/all.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='vendor/DataTables-1.13.1/datatables.css') }}">
+    <link type="text/css" rel="stylesheet" href= "{{ url_for('static',filename='css/style.css') }}">
+    <title> Sistema de Requisições Integrado</title>
+</head>
+
+<body class="min-vh-100">
+    <div class="sidebar position-fixed top-0 start-0 vh-100 flex-wrapper">
+        <div class="sidebar-body">
+            <div class="nav-menu flex-column">
+                <div class="nav-separator-title d-grid align-items-center">
+                    MENU PRINCIPAL
+                </div>
+                <a href="#usuariosMenu" class="nav-link open-menu d-flex align-items-center mb-3 me-3" data-bs-toggle="collapse" aria-expanded="false">
+                    <i class="fa-solid fa-user"></i>
+                    <span class="ms-2">Usuarios</span>
+                    <i class="fas fa-angle-right ms-auto me-0 icon-rotates"></i>
+                </a>
+                <div id="usuariosMenu" class="collapse submenu">
+                    <li class="nav-item py-3 d-flex align-items-center">
+                        <a href="/usuarios" class="d-flex w-100">Listar</a>
+                    </li>
+                </div>
+                <a href="#requisicoessMenu" class="nav-link open-menu d-flex align-items-center mb-3 me-3" data-bs-toggle="collapse" aria-expanded="false">
+                    <i class="fa-solid fa-envelope-open-text"></i>
+                    <span class="ms-2">Requisições</span>
+                    <i class="fas fa-angle-right ms-auto me-0 icon-rotates"></i>
+                </a>
+                <div id="requisicoessMenu" class="collapse submenu">
+                    <li class="nav-item py-3 d-flex align-items-center">
+                        <a href="/" class="d-flex w-100">Cadastrar</a>
+                    </li>
+                </div>
+                </div>
+                </div>
+                </div>
+                <section class="page-content min-vh-100 px-2 py-4">

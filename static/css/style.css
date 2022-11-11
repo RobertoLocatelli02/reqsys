@@ -1,0 +1,240 @@
+:root {
+    --sidebar-width: 14em;
+    --sidebar-background-color: RGBA(45, 40, 62, 1);
+    --sidebar-background-hover-color: rgb(128, 43, 177);
+}
+
+*,
+::before,
+::after {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Bradesco Sans', sans-serif;
+    font-weight: normal;
+    font-style: normal;
+    background-color: #ffffff;
+}
+
+.page-content {
+    margin-left: var(--sidebar-width);
+}
+
+
+/** INÍCIO SIDEBAR **/
+
+.sidebar {
+    background-color: var(--sidebar-background-color);
+    box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+    width: var(--sidebar-width);
+    overflow-y: auto;
+    overflow-x: hidden;
+    transition: all 0.3s ease;
+    z-index: 100;
+}
+
+.sidebar li {
+    list-style-type: none;
+}
+
+.sidebar a {
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.breadcrumb a {
+    text-decoration: none;
+    color: #000;
+}
+
+.sidebar .nav-separator-title {
+    background-color: RGBA(128, 43, 177, 1);
+    height: 2.25em;
+    padding-left: 1em;
+    font-size: .9em;
+    color: #ffffff;
+}
+
+.sidebar .nav-item {
+    height: 1.5em;
+    padding-left: 2em;
+}
+
+.sidebar .nav-link:hover,
+.sidebar .nav-item:hover,
+.sidebar a:active,
+.sidebar a:hover,
+.sidebar a:focus {
+    color: var(--sidebar-background-hover-color);
+}
+
+.icon-rotates {
+    -moz-transition: all 0.1s linear;
+    -webkit-transition: all 0.1s linear;
+    transition: all 0.1s linear;
+}
+
+.sidebar-logo {
+    height: 100px;
+}
+
+.flex-wrapper {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+
+/** FIM SIDEBAR **/
+
+
+/** INÍCIO BREADCRUMB **/
+
+.breadcrumb a:active,
+.breadcrumb a:hover,
+.breadcrumb a:focus,
+.breadcrumb .active {
+    color: var(--sidebar-background-hover-color);
+}
+
+
+/** FIM BREADCRUMB **/
+
+
+/** INÍCIO CARD **/
+
+.card,
+.breadcrumb,
+.modal-content {
+    background-color: RGBA(209, 215, 224, 1);
+}
+
+
+/** FIM CARD **/
+
+
+/** INÍCIO BOX **/
+
+.box {
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    margin: 0 10px 40px 10px;
+    background: #fff;
+    box-shadow: 0 10px 29px 0 rgba(68, 88, 144, 0.1);
+    transition: all 0.3s ease-in-out;
+    text-align: center;
+    align-items: center;
+    cursor: pointer;
+    color: #000;
+}
+
+a {
+    text-decoration: none;
+}
+
+.box:hover {
+    -webkit-transform: scale(1.05);
+    transform: scale(1.05);
+}
+
+.box .ferramentas-logo {
+    width: 100%;
+}
+
+
+/** FIM BOX **/
+
+
+/** INICIO FAROL **/
+
+.box-signal {
+    background-color: #2d3436;
+    background-image: linear-gradient(315deg, #2d3436 0%, #000000 74%);
+    color: #ffffff;
+}
+
+.signal {
+    background-color: #2e2d30;
+    border-radius: 10px;
+    flex-direction: row;
+    height: 75px;
+    width: 75px;
+}
+
+.circle {
+    background-color: rgba(0, 0, 0, 0.6);
+    position: relative;
+    height: 40px;
+    width: 40px;
+}
+
+.circle::after {
+    border-right: 4px solid rgba(255, 255, 255, 0.3);
+    border-radius: 100%;
+    content: ' ';
+    position: absolute;
+    left: 0px;
+    width: 40px;
+    height: 40px;
+}
+
+.signal-green {
+    background-color: #2ecc71;
+}
+
+.signal-red {
+    -webkit-animation: blinker 0.4s cubic-bezier(.5, 0, 1, 1) infinite alternate;
+    animation: blinker 0.4s cubic-bezier(.5, 0, 1, 1) infinite alternate;
+    background-color: #c0392b;
+}
+
+.signal-yellow {
+    -webkit-animation: blinker 0.8s cubic-bezier(.5, 0, 1, 1) infinite alternate;
+    animation: blinker 0.8s cubic-bezier(.5, 0, 1, 1) infinite alternate;
+    background-color: #f1c40f;
+}
+
+@-webkit-keyframes blinker {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes blinker {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+.text-purple {
+    color: rgb(128, 43, 177, 0.4)!important;
+}
+
+
+/** FIM FAROL **/
+
+
+/** INICIO CROPPER **/
+
+
+/** FIM CROPPER **/
+
+
+/** INICIO DATEPICKER */
+
+.datepicker-picker {
+    color: #000!important;
+}
+
+
+/** FIM DATEPICKER */
