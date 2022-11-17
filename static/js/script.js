@@ -200,7 +200,7 @@ document.addEventListener("DOMContentLoaded", function() {
             responsive: true
         });
 
-        $('#txtCadastrarContato').mask('(00) 0000-0000');
+        $('#txtCadastrarContato, #txtEditarTelefone').mask('(00) 0000-0000');
     }
 
     if (document.getElementById('main-listas-requisicoes-cadastrar')) {

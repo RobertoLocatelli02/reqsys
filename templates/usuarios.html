@@ -2,17 +2,17 @@
     {% include "header.html" %}
     <main id="main-listas-usuario">
         <ol class="breadcrumb p-2 rounded-2">
-            <li class="breadcrumb-item"><a href="/reqsys/">Inicio</a></li>
-            <li class="breadcrumb-item"><a href="/reqsys/">Menu Principal</a></li>
-            <li class="breadcrumb-item"><a href="/reqsys/">Usuários</a></li>
-            <li class="breadcrumb-item active" aria-current="page"><a href="/reqsys/usuarios">Listar</a></li>
+            <li class="breadcrumb-item"><a href="/">Inicio</a></li>
+            <li class="breadcrumb-item"><a href="/">Menu Principal</a></li>
+            <li class="breadcrumb-item"><a href="/">Usuários</a></li>
+            <li class="breadcrumb-item active" aria-current="page"><a href="/usuarios">Listar</a></li>
         </ol>
         <div class="card">
             <div class="card-body">
                 <h4 class="d-flex justify-content-between align-items-center mb-3 border-bottom">
                     <span>Cadastrar Usuarios</span>
                 </h4>
-                <form id="cadastrar-usuario-form" method="POST" action="/reqsys/cadastroUsuario">
+                <form id="cadastrar-usuario-form" method="POST" action="/cadastroUsuario">
                 <div class="row mb-3">  
                     <div class="col-md">
                         <label for="txtCadastrarNome">Nome<span class="text-danger">*</span></label>
@@ -84,7 +84,7 @@
         <div class="modal fade" id="deletar-usuario-modal" tabindex="-1" role="dialog" aria-labelledby="deletar-usuario-modal-label" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
-                    <form role="form" id="deletar-usuario-form" method="POST" action="/reqsys/deletarUsuario">
+                    <form role="form" id="deletar-usuario-form" method="POST" action="/deletarUsuario">
                         <div class="modal-header">
                             <h5 class="modal-title">Deletar</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
@@ -114,7 +114,7 @@
         <div class="modal fade" id="editar-usuario-modal" tabindex="-1" role="dialog" aria-labelledby="editar-usuario-modal-label" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
                 <div class="modal-content">
-                    <form role="form" id="editar-usuario-form" method="POST" action="/reqsys/editarUsuario">
+                    <form role="form" id="editar-usuario-form" method="POST" action="/editarUsuario">
                         <div class="modal-header">
                             <h5 class="modal-title">Editar</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">

@@ -45,11 +45,11 @@ def db_connection():
         print(e)
     return conn
 
-@app.route("/reqsys/")
+@app.route("/")
 def homepage():
-    return render_template('index.html')
+    return render_template('homepage.html')
 
-@app.route("/reqsys/usuarios")
+@app.route("/usuarios")
 def usuarios():
     conn = db_connection()
     cursor = conn.cursor()
@@ -61,7 +61,7 @@ def usuarios():
     return render_template('usuarios.html', usuarios=usuarios)
 
 
-@app.route('/reqsys/cadastroUsuario', methods = ['POST']) 
+@app.route('/cadastroUsuario', methods = ['POST']) 
 def cadastroUsuario():
     conn = db_connection()
     cursor = conn.cursor()
@@ -83,7 +83,7 @@ def cadastroUsuario():
     return make_response(response_data, 200)
 
 
-@app.route('/reqsys/dadosUsuario', methods = ['POST'])
+@app.route('/dadosUsuario', methods = ['POST'])
 def dadosUsuario():
     conn = db_connection()
     cursor = conn.cursor()
@@ -105,7 +105,7 @@ def dadosUsuario():
     resp = make_response(response_data, 200)
     return resp
 
-@app.route('/reqsys/editarUsuario', methods = ['POST'])
+@app.route('/editarUsuario', methods = ['POST'])
 def editarUsuario():
     conn = db_connection()
     cursor = conn.cursor()
@@ -113,7 +113,7 @@ def editarUsuario():
     id = request.form.get('txtEditusuarioID')
     nome = request.form.get('txtEditarNome')
     email = request.form.get('txtEditarEmail')
-    contato = request.form.get('txtEditarContato')
+    contato = request.form.get('txtEditarTelefone')
     profissao = request.form.get('txtEditarProfissao')
     area = request.form.get('txtEditarArea')
 
@@ -128,7 +128,7 @@ def editarUsuario():
 
     return make_response(response_data, 200)
 
-@app.route('/reqsys/deletarUsuario', methods = ['POST'])
+@app.route('/deletarUsuario', methods = ['POST'])
 def deletarUsuario():
     conn = db_connection()
     cursor = conn.cursor()
@@ -145,7 +145,7 @@ def deletarUsuario():
 
     return make_response(response_data, 200)
 
-@app.route("/reqsys/requisicoes/cadastrar", methods = ['POST', 'GET'])
+@app.route("/requisicoes/cadastrar", methods = ['POST', 'GET'])
 def requisicoesCadastrar():
     conn = db_connection()
     cursor = conn.cursor()
@@ -172,7 +172,7 @@ def requisicoesCadastrar():
         return make_response(response_data, 200)
     return render_template('requisicoes.cadastrar.html')
 
-@app.route("/reqsys/requisicoes/novas")
+@app.route("/requisicoes/novas")
 def novasRequisicoes():
     conn = db_connection()
     cursor = conn.cursor()
@@ -201,7 +201,7 @@ def novasRequisicoes():
     ]
     return render_template('requisicoes.novas.html', requisicoes=requisicoes)
 
-@app.route("/reqsys/requisicoes/detalhes/<id>/<origem>")
+@app.route("/requisicoes/detalhes/<id>/<origem>")
 def requisicoesDetalhes(id, origem):
     conn = db_connection()
     cursor = conn.cursor()
@@ -236,7 +236,7 @@ def requisicoesDetalhes(id, origem):
 
     return render_template('requisicoes.detalhes.html', requisicao=requisicao, usuarios=usuarios, historicos=historicos, origem=origem)
 
-@app.route('/reqsys/requisicoes/analisar', methods = ['POST'])
+@app.route('/requisicoes/analisar', methods = ['POST'])
 def analisarRequisicao():
     conn = db_connection()
     cursor = conn.cursor()
@@ -254,7 +254,7 @@ def analisarRequisicao():
 
     return make_response(response_data, 200)
 
-@app.route("/reqsys/requisicoes/emAnalise")
+@app.route("/requisicoes/emAnalise")
 def requisicoesEmAndamento():
     conn = db_connection()
     cursor = conn.cursor()
@@ -287,7 +287,7 @@ def requisicoesEmAndamento():
     ]
     return render_template('requisicoes.em.analise.html', requisicoes=requisicoes)
 
-@app.route('/reqsys/requisicoes/concluir', methods = ['POST'])
+@app.route('/requisicoes/concluir', methods = ['POST'])
 def concluirRequisicao():
     conn = db_connection()
     cursor = conn.cursor()
@@ -305,7 +305,7 @@ def concluirRequisicao():
 
     return make_response(response_data, 200)
 
-@app.route("/reqsys/requisicoes/concluidas")
+@app.route("/requisicoes/concluidas")
 def requisicoesConcluidas():
     conn = db_connection()
     cursor = conn.cursor()
@@ -338,7 +338,7 @@ def requisicoesConcluidas():
     ]
     return render_template('requisicoes.concluidas.html', requisicoes=requisicoes)
 
-@app.route('/reqsys/requisicoes/editar', methods = ['POST'])
+@app.route('/requisicoes/editar', methods = ['POST'])
 def editarRequisicao():
     conn = db_connection()
     cursor = conn.cursor()
