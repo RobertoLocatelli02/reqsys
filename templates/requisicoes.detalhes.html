@@ -1,0 +1,267 @@
+    {% include "header.html" %}
+<main id="main-requisicoes-detalhes">
+    <ol class="breadcrumb p-2 rounded-2">
+        <li class="breadcrumb-item"><a href="/">Inicio</a></li>
+        <li class="breadcrumb-item"><a href="/">Menu Principal</a></li>
+        <li class="breadcrumb-item"><a href="/">Requisições</a></li>
+        {% if origem == '1' %}
+        <li class="breadcrumb-item"><a href="/requisicoes/novas">Novas Requisições</a></li>
+        {% endif %}
+        {% if origem == '2' %}
+        <li class="breadcrumb-item"><a href="/requisicoes/emAnalise">Em Análise</a></li>
+        {% endif %}
+        {% if origem == '3' %}
+        <li class="breadcrumb-item"><a href="/requisicoes/concluidas">Concluídas</a></li>
+        {% endif %}
+        <li class="breadcrumb-item active" aria-current="page"><a href="/requisicoes/detalhes/{{ requisicao[0] }}/{{ origem }}">Detalhes</a></li>
+    </ol>
+    <div class="row">
+        <div class="col-md-4 order-md-2 mb-4">
+            {% if requisicao[8] != 'CONCLUIDO' %}
+            <div class="card mt-2 overflow-auto">
+                <div class="card-body">
+                    <h4 class="d-flex justify-content-between align-items-center mb-3 pt-3 border-bottom">
+                        <span>Ações</span>
+                        <div>
+                            <button class="btn btn-link" data-bs-toggle="collapse" data-bs-target="#collapseAcoes" aria-expanded="true" aria-controls="collapseOne"><i class="fas fa-angle-up icon-rotates"></i></button>
+                        </div>
+                    </h4>
+                    <div id="collapseAcoes" class="collapse show" aria-labelledby="headingOne">
+                        {% if requisicao[8] == 'NOVO' %}
+                        <div class="row">
+                            <div class="col-md">
+                                <div class="card text-center box">
+                                    <div class="card-body">
+                                        <a href="#analisar-requisicao-modal" data-bs-toggle="modal" data-bs-target="#analisar-requisicao-modal" class="text-info h5">
+                                            <div>
+                                                <i class="fas fa-search"></i>
+                                            </div>
+                                            <span>Analisar</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% if requisicao[8] == 'EM ANALISE' %}
+                        <div class="row">
+                            <div class="col-md">
+                                <div class="card text-center box">
+                                    <div class="card-body">
+                                        <a href="#concluir-requisicao-modal" data-bs-toggle="modal" data-bs-target="#concluir-requisicao-modal" class="text-success h5">
+                                            <div>
+                                                <i class="far fa-check-circle"></i>
+                                            </div>
+                                            <span>Concluir</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>     
+            {% endif %}
+            <div class="card mt-2 overflow-auto">
+                <div class="card-body">
+                    <h4 class="d-flex justify-content-between align-items-center mb-3 pt-3 border-bottom">
+                        <span>Acompanhamento</span>
+                        <div>
+                            <button class="btn btn-link" data-bs-toggle="collapse" data-bs-target="#collapseHist" aria-expanded="true" aria-controls="collapseOne"><i class="fas fa-angle-up icon-rotates"></i></button>
+                        </div>
+                    </h4>
+                    <div id="collapseHist" class="collapse show" aria-labelledby="headingOne">
+                        <ul class="list-group mb-3 text-start">                                
+                            {% for historico in historicos %}
+                                {% if historico['status'] == 'NOVO' %}
+                                    <li class="list-group-item d-flex align-items-center lh-condensed media">
+                                        <p class="h3 bd-placeholder-img rounded"><i class='fas fa-file-alt me-3'></i></p>
+                                        <div class="media-body ms-3">
+                                            <h6 class="mt-0 mb-1">Cadastrado em:</h6>
+                                            <p><small> {{ historico['data'] }}</small></p>                                            
+                                        </div>
+                                    </li>
+                                {% endif %}
+                                {% if historico['status'] == 'EM ANALISE' %}
+                                    <li class="list-group-item d-flex align-items-center lh-condensed media">
+                                        <p class="h3 bd-placeholder-img rounded"><i class='fas fa-comment-dots me-2'></i></p>
+                                        <div class="media-body ms-3">
+                                            <h6 class="mt-0 mb-1">Em Análise:</h6>
+                                            <p><small> {{ historico['data'] }}</small></p>
+                                            <p><small>Responsável: {{ historico['nome'] }}</small></p>                                         
+                                        </div>
+                                    </li>
+                                {% endif %}
+                                {% if historico['status'] == 'CONCLUIDO' %}
+                                    <li class="list-group-item d-flex align-items-center lh-condensed media">
+                                        <p class="h3 bd-placeholder-img rounded"><i class='fas fa-check me-3'></i></p>
+                                        <div class="media-body ms-3">
+                                            <h6 class="mt-0 mb-1">Concluído em:</h6>
+                                            <p><small> {{ historico['data'] }}</small></p>
+                                            <p><small>Responsável: {{ historico['nome'] }}</small></p>                                         
+                                        </div>
+                                    </li>
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>            
+        </div>
+        <div class="col-md-8 order-md-1 mb-4">
+            <div class="card mt-2">
+                <div class="card-body">
+                    <h4 class="d-flex justify-content-between align-items-center mb-3 pt-3 border-bottom">
+                        <span>Detalhes</span>
+                        <div>
+                            <a class="h6" href="#editar-requisicao-modal" data-bs-toggle="modal" data-bs-target="#editar-requisicao-modal"><i class="fas fa-edit"></i></a>
+                            <button class="btn btn-link" data-bs-toggle="collapse" data-bs-target="#collapseInfos" aria-expanded="true" aria-controls="collapseOne"><i class="fas fa-angle-up icon-rotates"></i></button>
+                        </div>
+                    </h4>
+                    <div id="collapseInfos" class="collapse show" aria-labelledby="headingOne">
+                        <div class="row">                        
+                            <div class="col-md">
+                                <label for="txtTituloRequisicao" class="form-label">Titulo da Requisição</label>
+                                <input type="text" class="form-control" value="{{ requisicao[1] }}" readonly>
+                            </div>                        
+                            <div class="col-md">
+                                <label for="txtDataExpectativa" class="form-label">Data Expectativa de Entrega</label>
+                                <input type="text" class="form-control" value="{{ requisicao[2] }}" readonly>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-md">
+                                <label for="txtDescricao" class="form-label">Descrição</label>
+                                <textarea name="txtDescricao" class="form-control" rows="3" readonly>{{ requisicao[3] }}</textarea>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-md">
+                                <label for="txtDescricao" class="form-label">Observações</label>
+                                <textarea name="txtDescricao" class="form-control" rows="3" readonly>{{ requisicao[4] }}</textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    <!-- Modal analisar requisicao -->
+    <div class="modal fade" id="analisar-requisicao-modal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <form id="analisar-requisicao-form" method="POST" action="/requisicoes/analisar">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Analisar Requisição</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true"></span>
+                        </button>
+                        <input type="hidden" name="txtAnalisarRequisicaoID" id="txtAnalisarRequisicaoID" value="{{ requisicao[0] }}">
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">                        
+                            <div class="col-md">
+                                <label for="txtAnalisarUsuarioID" class="form-label">Analista<span class="text-danger">*</span></label>
+                                <select name="txtAnalisarUsuarioID" id="txtAnalisarUsuarioID" class="form-select" required>
+                                    <option value="">Escolha uma opção</option>
+                                    {% for usuario in usuarios %}
+                                        <option value="{{ usuario['id'] }}">{{ usuario['nome'] }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>                        
+                        </div>
+                        <div class="col-md mt-2">
+                            <p>Tem certeza que quer mudar o status da requisição para "Em análise"?</p>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-success">Confirmar</button>
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fechar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Modal concluir -->
+    <div class="modal fade" id="concluir-requisicao-modal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <form id="concluir-requisicao-form" method="POST" action="/requisicoes/concluir">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Concluir Requisição</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true"></span>
+                        </button>
+                        <input type="hidden" name="txtConcluirRequisicaoID" id="txtConcluirRequisicaoID" value="{{ requisicao[0] }}">
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">                        
+                            <div class="col-md">
+                                <label for="txtConcluirUsuarioID" class="form-label">Analista<span class="text-danger">*</span></label>
+                                <select name="txtConcluirUsuarioID" id="txtConcluirUsuarioID" class="form-select" required>
+                                    <option value="">Escolha uma opção</option>
+                                    {% for usuario in usuarios %}
+                                        <option value="{{ usuario['id'] }}">{{ usuario['nome'] }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>                        
+                        </div>
+                        <div class="col-md">
+                            <div>
+                                <p>Tem certeza que quer mudar o status da requisição para "Concluído"?</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-success">Confirmar</button>
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fechar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Modal editar requisicao -->
+    <div class="modal fade" id="editar-requisicao-modal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <form id="editar-requisicao-form" method="POST" action="/requisicoes/editar">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Editar Requisição</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true"></span>
+                        </button>
+                        <input type="hidden" name="txtEditarRequisicaoID" id="txtEditarRequisicaoID" value="{{ requisicao[0] }}">
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">                        
+                            <div class="col-md">
+                                <label for="txtEditarTituloRequisicao" class="form-label">Titulo da Requisição<span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" name="txtEditarTituloRequisicao" id="txtEditarTituloRequisicao" value="{{ requisicao[1] }}" required>
+                            </div>                        
+                            <div class="col-md">
+                                <label for="txtEditarDataExpectativa" class="form-label">Data Expectativa de Entrega</label>
+                                <input type="text" class="form-control" name="txtEditarDataExpectativa" id="txtEditarDataExpectativa" value="{{ requisicao[2] }}">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md">
+                                <label for="txtEditarDescricao">Descrição<span class="text-danger">*</span></label>
+                                <textarea class="form-control" name="txtEditarDescricao" id="txtEditarDescricao" rows="3" required>{{ requisicao[3] }}</textarea>
+                            </div>     
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md">
+                                <label for="txtEditarObservacoes">Observações</label>
+                                <textarea class="form-control" name="txtEditarObservacoes" id="txtEditarObservacoes" rows="3">{{ requisicao[4] }}</textarea>
+                            </div> 
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-success">Confirmar</button>
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fechar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    {% include "footer.html" %}
+</main>

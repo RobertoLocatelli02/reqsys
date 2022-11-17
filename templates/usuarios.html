@@ -1,6 +1,12 @@
 
     {% include "header.html" %}
     <main id="main-listas-usuario">
+        <ol class="breadcrumb p-2 rounded-2">
+            <li class="breadcrumb-item"><a href="/">Inicio</a></li>
+            <li class="breadcrumb-item"><a href="/">Menu Principal</a></li>
+            <li class="breadcrumb-item"><a href="/">Usuários</a></li>
+            <li class="breadcrumb-item active" aria-current="page"><a href="/usuarios">Listar</a></li>
+        </ol>
         <div class="card">
             <div class="card-body">
                 <h4 class="d-flex justify-content-between align-items-center mb-3 border-bottom">
@@ -9,30 +15,30 @@
                 <form id="cadastrar-usuario-form" method="POST" action="/cadastroUsuario">
                 <div class="row mb-3">  
                     <div class="col-md">
-                        <label for="txtCadastrarNome">Nome</label>
-                        <input type="text" class="form-control" name="txtCadastrarNome" id="txtCadastrarNome" autocomplete="off" >
+                        <label for="txtCadastrarNome">Nome<span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" name="txtCadastrarNome" id="txtCadastrarNome" autocomplete="off" required>
                     </div>
                     <div class="col-md">
-                        <label for="txtCadastrarEmail">E-mail</label>
-                        <input type="text" class="form-control" name="txtCadastrarEmail" id="txtCadastrarEmail" autocomplete="off" >
+                        <label for="txtCadastrarEmail">E-mail<span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" name="txtCadastrarEmail" id="txtCadastrarEmail" autocomplete="off" required>
                     </div>   
                     <div class="col-md">
-                        <label for="txtCadastrarContato">Telefone para contato</label>
-                        <input type="text" class="form-control" name="txtCadastrarContato" id="txtCadastrarContato" autocomplete="off" >
+                        <label for="txtCadastrarContato">Telefone para contato<span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" name="txtCadastrarContato" id="txtCadastrarContato" autocomplete="off" required>
                     </div>   
                 </div>
                 <div class="row mb-3">
                     <div class="col-md">
-                        <label for="txtCadastrarProfissao">Profissão</label>
-                        <input type="text" class="form-control" name="txtCadastrarProfissao" id="txtCadastrarProfissao" autocomplete="off" >
+                        <label for="txtCadastrarProfissao">Profissão<span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" name="txtCadastrarProfissao" id="txtCadastrarProfissao" autocomplete="off" required>
                     </div>   
                     <div class="col-md">
-                        <label for="txtCadastrarArea">Área de atuação</label>
-                        <input type="text" class="form-control" name="txtCadastrarArea" id="txtCadastrarArea" autocomplete="off" >
+                        <label for="txtCadastrarArea">Área de atuação<span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" name="txtCadastrarArea" id="txtCadastrarArea" autocomplete="off" required>
                     </div>   
                 </div>
                     <div class="d-grid gap-2">
-                        <button type="submit" class="btn btn-success btn-block">Cadastrar</button>
+                        <button type="submit" class="btn btn-success btn-block" id="btnCadastrarUsuario">Cadastrar</button>
                     </div>
                 </form>
             </div>
@@ -49,9 +55,10 @@
                                     <th>Contato</th>
                                     <th>Profissão</th>
                                     <th>Area de atuação</th>
-                                    <th class="text-center">Ações</th>
+                                    <th class="text-center not-export">Ações</th>
                                 </tr>
                             </thead>
+                            <tbody>
                                 {% for usuario in usuarios %}
                                     <tr>
                                         <td>{{ usuario['nome'] }}</td>
@@ -67,8 +74,6 @@
                                         </td>
                                     </tr>
                                 {% endfor %}
-                            <tbody>
-                                
                             </tbody>
                         </table>
                     </div>
@@ -107,9 +112,9 @@
         </div>
         <!-- Modal editar  -->
         <div class="modal fade" id="editar-usuario-modal" tabindex="-1" role="dialog" aria-labelledby="editar-usuario-modal-label" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
                 <div class="modal-content">
-                    <form role="form" id="editar-usuario-form" method="POST" action="editarUsuario">
+                    <form role="form" id="editar-usuario-form" method="POST" action="/editarUsuario">
                         <div class="modal-header">
                             <h5 class="modal-title">Editar</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
@@ -118,14 +123,29 @@
                             <input type="hidden" name="txtEditusuarioID" id="txtEditusuarioID" value="">
                         </div>
                         <div class="modal-body">
-                            <div class="form-group">
-                                <label for="txtEditusuarioAtivo">Ativo</label>
-                                <select name="txtEditusuarioAtivo" id="txtEditusuarioAtivo" class="form-select" required>
-                                    <option value="">Escolha uma opção</option>
-                                    <option value="1">Sim</option>
-                                    <option value="0">Não</option>
-                                </select>
+                            <div class="row mb-3">  
+                                <div class="col-md">
+                                    <label for="txtEditarNome">Nome</label>
+                                    <input type="text" class="form-control" name="txtEditarNome" id="txtEditarNome" autocomplete="off" >
+                                </div>
+                                <div class="col-md">
+                                    <label for="txtEditarEmail">E-mail</label>
+                                    <input type="text" class="form-control" name="txtEditarEmail" id="txtEditarEmail" autocomplete="off" >
+                                </div>   
+                                <div class="col-md">
+                                    <label for="txtEditarTelefone">Telefone</label>
+                                    <input type="text" class="form-control" name="txtEditarTelefone" id="txtEditarTelefone" autocomplete="off" >
+                                </div>   
                             </div>
+                            <div class="row mb-3">
+                                <div class="col-md">
+                                    <label for="txtEditarProfissao">Profissão</label>
+                                    <input type="text" class="form-control" name="txtEditarProfissao" id="txtEditarProfissao" autocomplete="off" >
+                                </div>   
+                                <div class="col-md">
+                                    <label for="txtEditarArea">Área de atuação</label>
+                                    <input type="text" class="form-control" name="txtEditarArea" id="txtEditarArea" autocomplete="off" >
+                                </div>  
                         </div>
                         <div class="modal-footer">
                             <div class="btn-group">

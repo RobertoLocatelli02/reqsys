@@ -1,0 +1,45 @@
+
+        {% include "header.html" %}
+    <main id="main-requisicoes-novas">
+        <ol class="breadcrumb p-2 rounded-2">
+            <li class="breadcrumb-item"><a href="/">Inicio</a></li>
+            <li class="breadcrumb-item"><a href="/">Menu Principal</a></li>
+            <li class="breadcrumb-item"><a href="/">Requisições</a></li>
+            <li class="breadcrumb-item active" aria-current="page"><a href="/requisicoes/novas">Novas Requisições</a></li>
+        </ol>
+        <div class="card mt-2">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md">
+                        <table class="table table-striped table-hover table-sm table-bordered table-light" id="tblRequisicoesNovas">
+                            <thead>
+                                <tr>
+                                    <th>Titulo</th>
+                                    <th>Status</th>
+                                    <th>Data Cadastro</th>
+                                    <th class="text-center">Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for requisicao in requisicoes %}
+                                    <tr>
+                                        <td>{{ requisicao['titulo'] }}</td>
+                                        <td>{{ requisicao['status'] }}</td>
+                                        <td>{{ requisicao['data'] }}</td>
+                                        <td class="text-center">
+                                            <div class="btn-group">
+                                                <a type="button" class="btn btn-sm btn-info" href="/requisicoes/detalhes/{{ requisicao['id'] }}/1"><i class="fas fa-search"></i> Detalhes</a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    {% include "footer.html" %}
+
+
