@@ -47,7 +47,7 @@ def db_connection():
 
 @app.route("/")
 def homepage():
-    return render_template('homepage.html')
+    return render_template('index.html')
 
 @app.route("/usuarios")
 def usuarios():
