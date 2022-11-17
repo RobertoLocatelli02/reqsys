@@ -1,19 +1,19 @@
     {% include "header.html" %}
 <main id="main-requisicoes-detalhes">
     <ol class="breadcrumb p-2 rounded-2">
-        <li class="breadcrumb-item"><a href="/">Inicio</a></li>
-        <li class="breadcrumb-item"><a href="/">Menu Principal</a></li>
-        <li class="breadcrumb-item"><a href="/">Requisições</a></li>
+        <li class="breadcrumb-item"><a href="/reqsys/">Inicio</a></li>
+        <li class="breadcrumb-item"><a href="/reqsys/">Menu Principal</a></li>
+        <li class="breadcrumb-item"><a href="/reqsys/">Requisições</a></li>
         {% if origem == '1' %}
-        <li class="breadcrumb-item"><a href="/requisicoes/novas">Novas Requisições</a></li>
+        <li class="breadcrumb-item"><a href="/reqsys/requisicoes/novas">Novas Requisições</a></li>
         {% endif %}
         {% if origem == '2' %}
-        <li class="breadcrumb-item"><a href="/requisicoes/emAnalise">Em Análise</a></li>
+        <li class="breadcrumb-item"><a href="/reqsys/requisicoes/emAnalise">Em Análise</a></li>
         {% endif %}
         {% if origem == '3' %}
-        <li class="breadcrumb-item"><a href="/requisicoes/concluidas">Concluídas</a></li>
+        <li class="breadcrumb-item"><a href="/reqsys/requisicoes/concluidas">Concluídas</a></li>
         {% endif %}
-        <li class="breadcrumb-item active" aria-current="page"><a href="/requisicoes/detalhes/{{ requisicao[0] }}/{{ origem }}">Detalhes</a></li>
+        <li class="breadcrumb-item active" aria-current="page"><a href="/reqsys/requisicoes/detalhes/{{ requisicao[0] }}/{{ origem }}">Detalhes</a></li>
     </ol>
     <div class="row">
         <div class="col-md-4 order-md-2 mb-4">
@@ -149,7 +149,7 @@
     <div class="modal fade" id="analisar-requisicao-modal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-                <form id="analisar-requisicao-form" method="POST" action="/requisicoes/analisar">
+                <form id="analisar-requisicao-form" method="POST" action="/reqsys/requisicoes/analisar">
                     <div class="modal-header">
                         <h5 class="modal-title">Analisar Requisição</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
@@ -185,7 +185,7 @@
     <div class="modal fade" id="concluir-requisicao-modal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-                <form id="concluir-requisicao-form" method="POST" action="/requisicoes/concluir">
+                <form id="concluir-requisicao-form" method="POST" action="/reqsys/requisicoes/concluir">
                     <div class="modal-header">
                         <h5 class="modal-title">Concluir Requisição</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
@@ -223,7 +223,7 @@
     <div class="modal fade" id="editar-requisicao-modal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-                <form id="editar-requisicao-form" method="POST" action="/requisicoes/editar">
+                <form id="editar-requisicao-form" method="POST" action="/reqsys/requisicoes/editar">
                     <div class="modal-header">
                         <h5 class="modal-title">Editar Requisição</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
