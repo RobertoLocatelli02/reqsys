@@ -47,7 +47,7 @@ def db_connection():
 
 @app.route("/reqsys/")
 def homepage():
-    return render_template('homepage.html')
+    return render_template('index.html')
 
 @app.route("/reqsys/usuarios")
 def usuarios():
