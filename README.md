@@ -10,4 +10,3 @@ Participantes:
 - Bruno Souza Rodrigues da Silva - 125111252180
 - Mateus de Carvalho Silva - 125111376909
 - Roberto Domingos Locatelli - 125111345367
-- Vinicius Nobre De Sousa - 125111350357
