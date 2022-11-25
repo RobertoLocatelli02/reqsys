@@ -5,4 +5,4 @@ Participantes:
 - Mateus de Carvalho Silva - 125111376909
 - Roberto Domingos Locatelli - 125111345367
 - Maria Fernanda
-- Vinicius
+- Vinicius Nobre De Sousa - 125111350357
